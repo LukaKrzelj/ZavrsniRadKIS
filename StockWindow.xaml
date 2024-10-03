@@ -1,0 +1,36 @@
+﻿<Window x:Class="ZavrsniRadKIS.StockWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ZavrsniRadKIS"
+        mc:Ignorable="d"
+        Title="StockWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <UniformGrid Rows="1" Columns="1" HorizontalAlignment="Stretch">
+            <Button Content="Inventurna lista" x:Name="inventoryListButton" Click="inventoryListButton_Click" Margin="5" Style="{StaticResource DefaultButtonStyle}"/>
+        </UniformGrid>
+
+        <DataGrid Grid.Row="1" x:Name="stockDataGrid" AutoGenerateColumns="True"/>
+
+        <TextBlock Grid.Row="2" Text="Pretraživanje proizvoda" TextAlignment="Center"/>
+
+        <ScrollViewer Grid.Row="3" HorizontalScrollBarVisibility="Auto">
+            <StackPanel Margin="20">
+                <TextBox x:Name="productSearchTextBox" Width="200" Margin="0,0,0,10" TextChanged="productSearchTextBox_TextChanged" PreviewKeyDown="productSearchTextBox_PreviewKeyDown"/>
+            </StackPanel>
+        </ScrollViewer>
+
+        <DataGrid Grid.Row="4" x:Name="productsDataGrid" AutoGenerateColumns="True" PreviewKeyDown="productsDataGrid_PreviewKeyDown" MouseUp="ProductsDataGrid_MouseUp">
+
+        </DataGrid>
+    </Grid>
+</Window>

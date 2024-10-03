@@ -1,0 +1,52 @@
+﻿<Window x:Class="ZavrsniRadKIS.NewPartnerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ZavrsniRadKIS"
+        mc:Ignorable="d"
+        Title="NewPartnerWindow" Height="800" Width="350">
+    <StackPanel Margin="10">
+        <TextBlock Text="Dodavanje novog partnera" Style="{StaticResource  MainTextBlock}"/>
+
+        <!--Unos podataka za novog partnera-->
+        <TextBlock Text="Ime partnera:" Style="{StaticResource  DefaultTextBlock}"/>
+        <TextBox x:Name="partnerNameTextBox" Style="{StaticResource  DefaultTextBox}"/>
+
+        <TextBlock Text="OIB:" Style="{StaticResource  DefaultTextBlock}"/>
+        <TextBox x:Name="partnerOIBTextBox" Style="{StaticResource  DefaultTextBox}"/>
+
+        <TextBlock Text="Telefonski broj:" Style="{StaticResource  DefaultTextBlock}"/>
+        <TextBox x:Name="partnerTelNumTextBox" Style="{StaticResource  DefaultTextBox}"/>
+
+        <TextBlock Text="Mobilni broj:" Style="{StaticResource  DefaultTextBlock}"/>
+        <TextBox x:Name="partnerMobNumTextBox" Style="{StaticResource  DefaultTextBox}"/>
+
+        <TextBlock Text="IBAN:" Style="{StaticResource  DefaultTextBlock}"/>
+        <TextBox x:Name="partnerIBANTextBox" Style="{StaticResource  DefaultTextBox}"/>
+
+        <TextBlock Text="Ulica:" Style="{StaticResource  DefaultTextBlock}"/>
+        <TextBox x:Name="partnerStreetTextBox" Style="{StaticResource  DefaultTextBox}"/>
+
+        <TextBlock Text="Grad:" Style="{StaticResource  DefaultTextBlock}"/>
+        <TextBox x:Name="partnerCityTextBox" Style="{StaticResource  DefaultTextBox}"/>
+
+        <TextBlock Text="Država:" Style="{StaticResource  DefaultTextBlock}"/>
+        <TextBox x:Name="partnerCountryTextBox" Style="{StaticResource  DefaultTextBox}"/>
+
+        <TextBlock Text="Poštanski broj:" Style="{StaticResource  DefaultTextBlock}"/>
+        <TextBox x:Name="partnerZIPTextBox" Style="{StaticResource  DefaultTextBox}"/>
+
+        <TextBlock Text="Je li riječ o poslovnoj jedinici" Style="{StaticResource  DefaultTextBlock}"/>
+        <UniformGrid>
+            <RadioButton x:Name="partnerIsRetailerRadioButton">Da</RadioButton>
+            <RadioButton IsChecked="True">Ne</RadioButton>
+        </UniformGrid>
+        
+        
+
+        <Button x:Name="newPartnerButton" 
+                Click="newPartnerButton_Click"
+                Style="{StaticResource LoginButtonStyle}">Unesite promjene</Button>
+    </StackPanel>
+</Window>

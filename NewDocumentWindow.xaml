@@ -1,0 +1,96 @@
+﻿<Window x:Class="ZavrsniRadKIS.NewDocumentWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ZavrsniRadKIS"
+        xmlns:uc="clr-namepsace:ZavrsniRadKIS.ProductSearch"
+        mc:Ignorable="d"
+        Title="NewDocumentWindow" Height="800" Width="1200">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="12*"/>
+            <RowDefinition Height="58*"/>
+            <RowDefinition Height="30*"/>
+        </Grid.RowDefinitions>
+        
+        <!--Gornji dio, info o dokumentu-->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50*"/>
+                <ColumnDefinition Width="50*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="Vrsta dokumenta:" Style="{StaticResource DefaultTextBlock}" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"/>
+                <ComboBox x:Name="documentTypeComboBox" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" IsDropDownOpen="True">
+                    <ComboBoxItem Content="Ponuda" Tag="offer"/>
+                    <ComboBoxItem Content="Narudžba" Tag="order"/>
+                    <ComboBoxItem Content="Dostavmica" Tag="invoice"/>
+                    <ComboBoxItem Content="Račun" Tag="bill"/>
+                    <ComboBoxItem Content="Inventura" Tag="inventory"/>
+                </ComboBox>
+
+                <TextBlock Text="Šifra partnera:" Style="{StaticResource DefaultTextBlock}" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center"/>
+                <TextBox x:Name="partnerIDTextBox" PreviewKeyDown="partnerIDTextBox_PreviewKeyDown" HorizontalAlignment="Stretch" MinWidth="200" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center"/>
+
+                <TextBlock Text="Partner:" Style="{StaticResource DefaultTextBlock}" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center"/>
+                <TextBox x:Name="partnerTextBox" PreviewKeyDown="partnerTextBox_PreviewKeyDown" HorizontalAlignment="Stretch" MinWidth="200" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center"/>
+            </Grid>
+
+            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="Vrsta plaćanja:" Style="{StaticResource DefaultTextBlock}" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"/>
+                <ComboBox x:Name="payingMethodComboBox" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center">
+                    <ComboBoxItem Content="Gotovina" Tag="cash"/>
+                    <ComboBoxItem Content="Transakcija" Tag="bank"/>
+                </ComboBox>
+
+                <TextBlock Text="Detalji:" Style="{StaticResource DefaultTextBlock}" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center"/>
+                <TextBox x:Name="detailsTextBox" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center"/>
+            </Grid>
+        </Grid>
+        
+        <Grid Grid.Row="1">
+            <DataGrid x:Name="documentItemsDataGrid" AutoGenerateColumns="True" PreviewKeyDown="documentItemsDataGrid_PreviewKeyDown"/>
+        </Grid>
+        
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="20*"/>
+                <RowDefinition Height="70*"/>
+            </Grid.RowDefinitions>
+            
+            <TextBlock Grid.Row="0" Text="Pretraživanje proizvoda" TextAlignment="Center"/>
+            
+            <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto">
+                <StackPanel Margin="20">
+                    <TextBox x:Name="productSearchTextBox" Width="200" Margin="0,0,0,10" TextChanged="ProductSearchTextBox_TextChanged" PreviewKeyDown="productSearchTextBox_PreviewKeyDown"/>
+                </StackPanel>
+            </ScrollViewer>
+            
+            <DataGrid Grid.Row="2" x:Name="productsDataGrid" AutoGenerateColumns="True" PreviewKeyDown="productsDataGrid_PreviewKeyDown" MouseUp="productsDataGrid_MouseUp">
+
+            </DataGrid>
+        </Grid>
+
+    </Grid>
+</Window>

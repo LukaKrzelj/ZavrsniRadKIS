@@ -1,0 +1,92 @@
+﻿<Window x:Class="ZavrsniRadKIS.Dashboard"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ZavrsniRadKIS"
+       
+        mc:Ignorable="d"
+        Title="Završni rad" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20*"/>
+            <ColumnDefinition Width="80*"/>
+        </Grid.ColumnDefinitions>
+        
+        <!--Lijeva strana, navigacija-->
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+            <StackPanel Margin="5,0">
+                <!--Botun za otvaranje novog prozora za izradu novih partnera-->
+                <Button x:Name="partnerWindowButton" Click="PartnerWindowButton_Click" Style="{StaticResource DefaultButtonStyle}">Upravljajte partnerima</Button>
+                <Button x:Name="productsWindowButton" Click="productsWindowButton_Click" Style="{StaticResource DefaultButtonStyle}">Upravljajte proizvodima</Button>
+                <!--Treeview za veleprodaju-->
+                <TreeView x:Name="wholesaleTreeView" MouseDoubleClick="WholesaleTreeView_MouseDoubleClick" Grid.Row="1" Margin="5,5" Padding="0, 5" Background="LightGray">
+                    <TreeViewItem Header ="Veleprodaja" IsExpanded="True">
+                        <TreeViewItem Header="Ulaz"/>
+                        <TreeViewItem Header="Izlaz"/>
+                        <TreeViewItem Header="Zalihe"/>
+                    </TreeViewItem>
+                </TreeView>
+                
+                <!--Treeview za maloprodajne jedinice-->
+                <TreeView x:Name="retailerTreeView" MouseDoubleClick="RetailerTreeView_MouseDoubleClick" Grid.Row="2" Margin="5,5" Padding="0, 5" Background="LightGray">
+                    <TreeViewItem Header ="Poslovne jedinice" IsExpanded="True">
+                        <TreeViewItem Header="Ulaz"/>
+                        <TreeViewItem Header="Izlaz"/>
+                        <TreeViewItem Header="Zalihe"/>
+                        <TreeViewItem Header="Prodajne jedinice" IsExpanded="True">
+                            <ComboBox x:Name="retailersComboBox" Height="Auto" SelectedIndex="0"/>
+                        </TreeViewItem>
+                        </TreeViewItem>
+                </TreeView>
+            </StackPanel>
+        </ScrollViewer>
+        
+        <!--Desna strana, popis računa-->
+        <StackPanel Grid.Column="1" Margin="5,0">
+            <!--Botuni za dovrsavanje transakcija i dodavanje novog računa-->
+            <UniformGrid Rows="1" Columns="4" HorizontalAlignment="Stretch">
+                <Button x:Name="newDocumentButton" Click="NewDocumentButton_Click" Margin="5" Style="{StaticResource DefaultButtonStyle}">Novi dokument</Button>
+                <Button x:Name="finishTransactionButton" Click="FinishTransactionButton_Click" Margin="5" Style="{StaticResource DefaultButtonStyle}">Dovršite transakciju</Button>
+                <Button x:Name="editDocumentButton" Click="editDocumentButton_Click" Margin="5" Style="{StaticResource DefaultButtonStyle}">Uredite dokument</Button>
+                <Button x:Name="printDocumentButton" Click="printDocumentButton_Click" Margin="5" Style="{StaticResource DefaultButtonStyle}">Ispišite dokument</Button>
+            </UniformGrid>
+
+
+            <!--Popis računa za odabranu prodajnu jedinicu-->
+            <ScrollViewer>
+                <DataGrid x:Name="receiptsDataGrid" AutoGenerateColumns="False" PreviewMouseUp="receiptsDataGrid_PreviewMouseUp">
+                    <DataGrid.RowStyle>
+                        <Style TargetType="{x:Type DataGridRow}">
+                            
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding isCompleted}" Value="1">
+                                    <Setter Property="Background" Value="LightGreen"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGrid.RowStyle>
+
+                    <DataGrid.Columns>
+                        <!-- Visible columns -->
+                        <DataGridTextColumn Header="Vrijeme kreiranja" Binding="{Binding dateTime}" />
+                        <DataGridTextColumn Header="Is Completed" Binding="{Binding isCompleted}"/>
+                        <DataGridTextColumn Header="Vrsta otpremnice" Binding="{Binding receiptType}" />
+                        <DataGridTextColumn Header="Način plaćanja" Binding="{Binding paymentMethod}" />
+                        <DataGridTextColumn Header="Vrsta dokumenta" Binding="{Binding documentType}" />
+                        <DataGridTextColumn Header="Detalji" Binding="{Binding details}" />
+
+                        <!-- Hidden columns -->
+                        <DataGridTextColumn Header="ID" Binding="{Binding id}" Visibility="Collapsed"/>
+                        <DataGridTextColumn Header="Korisnički ID" Binding="{Binding userId}" Visibility="Collapsed"/>
+                        <DataGridTextColumn Header="Partner ID" Binding="{Binding partnerId}" Visibility="Collapsed"/>
+                        <DataGridTextColumn Header="Poslovna jedinica" Binding="{Binding retailPartner}" Visibility="Collapsed"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </ScrollViewer>
+        </StackPanel>
+
+        
+    </Grid>
+
+</Window>

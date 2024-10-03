@@ -1,0 +1,36 @@
+﻿<Window x:Class="ZavrsniRadKIS.PartnersWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ZavrsniRadKIS"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="PartnersWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <UniformGrid Rows="1" Columns="3" HorizontalAlignment="Stretch">
+            <Button Content="Novi partner" x:Name="newPartnerButton" Click="newPartnerButton_Click" Margin="5"/>
+            <Button Content="Uredite partnera" x:Name="editPartnerButton" Click="editPartnerButton_Click" Margin="5"/>
+            <Button Content="Obrišite partnera" x:Name="deletePartnerButton" Click="deletePartnerButton_Click" Margin="5"/>
+        </UniformGrid>
+
+        <TextBlock Grid.Row="1" Text="Pretraživanje partnera" TextAlignment="Center"/>
+
+        <ScrollViewer Grid.Row="2" HorizontalScrollBarVisibility="Auto">
+            <StackPanel Margin="20">
+                <TextBox x:Name="partnerSearchTextBox" Width="200" Margin="0,0,0,10" TextChanged="partnerSearchTextBox_TextChanged" PreviewKeyDown="partnerSearchTextBox_PreviewKeyDown"/>
+            </StackPanel>
+        </ScrollViewer>
+
+        <DataGrid Grid.Row="3" x:Name="partnersDataGrid" AutoGenerateColumns="True" PreviewKeyDown="partnersDataGrid_PreviewKeyDown" MouseUp="PartnersDataGrid_MouseUp">
+
+        </DataGrid>
+    </Grid>
+</Window>

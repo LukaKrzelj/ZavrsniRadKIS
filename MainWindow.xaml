@@ -1,0 +1,47 @@
+﻿<Window x:Class="ZavrsniRadKIS.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ZavrsniRadKIS"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="KIS - Završni rad" Height="450" Width="350">
+    <Border Style="{StaticResource LoginBorderStyle}">
+        <StackPanel Orientation="Vertical"
+                    Margin="20">
+            <TextBlock Text="Prijava" 
+                       Style="{StaticResource LoginTextBlock}"/>
+            <Grid VerticalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Korisničko ime:" 
+                    Grid.Row="0"
+                    Style="{StaticResource DefaultTextBlock}"/>
+                <TextBox x:Name="userNameTextBox" 
+                    Grid.Column="1"
+                    Grid.Row="1"
+                    Text="Luka"
+                    Style="{StaticResource DefaultTextBox}"/>
+                <TextBlock Text="Lozinka" 
+                    Grid.Row="2"
+                    Style="{StaticResource DefaultTextBlock}"/>
+                <PasswordBox x:Name="passwordBox"
+                    Grid.Row="3"
+                    Password="lozinka1"
+                    Style="{StaticResource LoginPasswordBox}"/>
+            </Grid>
+
+            <Button x:Name="LoginButton"
+                    Click="LoginButton_Click"
+                    Content="Prijavi se"
+                    Style="{StaticResource LoginButtonStyle}">
+            </Button>
+
+        </StackPanel>
+    </Border>
+</Window>
